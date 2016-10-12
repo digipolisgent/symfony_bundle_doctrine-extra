@@ -40,7 +40,8 @@ trait Assertable
             case Result::SINGLE:
                 return $builder->getQuery()->getOneOrNullResult($hydration);
             case Result::FIRST:
-                return $builder->getQuery()->getResult()[0];
+                $result = $builder->setMaxResults(1)->getQuery()->getResult();
+                return count($result) > 0 ? $result[0] : null;
             case Result::ITERATE:
                 return $builder->getQuery()->iterate();
             case Result::COUNT:

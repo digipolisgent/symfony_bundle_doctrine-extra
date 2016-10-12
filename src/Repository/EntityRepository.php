@@ -4,7 +4,6 @@ namespace Avdb\DoctrineExtra\Repository;
 
 use Avdb\DoctrineExtra\Assert\Assertable;
 use Avdb\DoctrineExtra\Filter\DoctrineFilter;
-use Avdb\DoctrineExtra\Resolver\Filterable;
 use Avdb\DoctrineExtra\Resolver\Resolver;
 use Doctrine\ORM\Internal\Hydration\IterableResult;
 use Doctrine\ORM\Query;

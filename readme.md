@@ -1,6 +1,48 @@
 #Doctrine Extra's
 
-## 1. Filters
+## 1. Example's
+In this package an EntityRepository is included that uses the Assert en Resolvable trait. If we use this repository
+we can do the following code examples ;
+
+Select all new & processing orders paginated
+```
+$paginatedOrders = $this->repository->paginate()->filter(
+    new AggregateFilter([new StatusFilter('new'),new StatusFilter('processing')]
+));
+```
+
+Select all 'new' & 'processing' orders as an iterator
+
+```
+$iteratedOrders = $this->repository->iterate()->filter(
+    new AggregateFilter([new StatusFilter('new'),new StatusFilter('finished')]
+));
+```
+
+Count all 'new' & 'processing' orders
+
+```
+$count = $this->repository->count()->filter(
+    new AggregateFilter([new StatusFilter('new'),new StatusFilter('finished')]
+));
+```
+
+Add an extra parameter to an existing query
+
+```
+$builder = $this->repository->builder()->filter(
+    new AggregateFilter([new StatusFilter('new'),new StatusFilter('finished')]
+));
+
+$builder->andWhere('category = :category');
+$builder->setParameter('category', 'books');
+
+$orders = $builder->getResult();
+```
+
+More example's are available below in the docs.
+
+## 2. Filters
 Create Filter objects to easily filter your repository.
 This package contains two default Filter objects to use ; 'AggregateFilter' and 'PropertyFilter'. Both are multipurpose
 but is is recommended to extend the AbstractFilter and create your own.
@@ -133,7 +175,75 @@ for example have a Reservation entity and a Ticket entity that both have an asso
 So by now we can do the following ;
 
 ```
-$reservations = $this->reservationRepository->filter(new UserUsernameFilter('example@doctrine.com'));
-$orders = $this->orderRepository->filter(new UserUsernameFilter('example@doctrine.com'));
-$tickets = $this->ticketRepository->filter(new UserUSernameFilter('example@doctrine.com'));
+$reservations = $this->reservationRepository->filter(new UserEmailFilter('example@doctrine.com'));
+$orders = $this->orderRepository->filter(new UserEmailFilter('example@doctrine.com'));
+$tickets = $this->ticketRepository->filter(new UserEmailFilter('example@doctrine.com'));
 ```
+
+##3. Assert Results
+This package includes the Assertable trait, which allows any class to pass a QueryBuilder object and retrieve different
+results from that same QueryBuilder object.
+
+For example, we have a repository that uses the Assertable trait, we the following code ;
+
+```
+class OrderRepository extends EntityRepository
+{
+    use Assertable;
+
+    public function getOrdersByCategory($category)
+    {
+        $builder = $this->createQueryBuilder('root');
+        $builder->andWhere('root.category = :category');
+        $builder->setParameter('category', $category);
+
+        return $this->assertResult($builder);
+    }
+}
+```
+Because we use the assertable trait, and we pass our QueryBuilder object through the assertResult() method, we can
+manipulate what kind of result this function will return. By default this function will act as expected and
+return an array with all Order entities by a certain category.
+
+```
+  $orders = $this->repository->getOrdersByCategory('some_category');
+```
+
+If we want to retrieve the orders paginated, we can simply call the builder() method before calling getOrdersByCategory
+and the Assert trait will assert that the result passed as a result will be a Paginator object;
+
+```
+ $paginator = $this->repository->builder()->getOrdersByCategory('some_category');
+```
+
+To see all possible outcomes of the assertResult() method, take the following code ;
+
+```
+protected function assertResult(QueryBuilder $builder, $hydration = Query::HYDRATE_OBJECT)
+{
+    switch($this->assert) {
+        case Result::ARRAY:
+            return $builder->getQuery()->getResult($hydration);
+        case Result::PAGINATE:
+            return new Paginator($builder);
+        case Result::SINGLE:
+            return $builder->getQuery()->getOneOrNullResult($hydration);
+        case Result::FIRST:
+            $result = $builder->setMaxResults(1)->getQuery()->getResult();
+            return count($result) > 0 ? $result[0] : null;
+        case Result::ITERATE:
+            return $builder->getQuery()->iterate();
+        case Result::COUNT:
+            $paginator = new Paginator($builder);
+            return $paginator->count();
+        case Result::QUERY:
+            return $builder->getQuery();
+        case Result::BUILDER:
+            return $builder;
+        default:
+            throw new AssertResultException(sprintf('Unknown result assertion "%s"', $this->assert));
+    }
+}
+```
+
+The above code is located in  the Assert trait.
