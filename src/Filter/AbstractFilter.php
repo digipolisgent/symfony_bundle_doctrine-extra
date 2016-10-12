@@ -5,7 +5,7 @@ namespace Avdb\DoctrineExtra\Filter;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
 
-abstract class AbstractDoctrineFilter implements DoctrineFilter
+abstract class AbstractFilter implements DoctrineFilter
 {
     /**
      * Parameter used in the Filter

@@ -11,7 +11,7 @@ use Doctrine\ORM\QueryBuilder;
  * @package Avdb\DoctrineExtra\Filter
  * @method DoctrineFilter[] getParameter()
  */
-class AggregateFilter extends AbstractDoctrineFilter
+class AggregateFilter extends AbstractFilter
 {
     use Resolver;
 
