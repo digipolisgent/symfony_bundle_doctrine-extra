@@ -1,17 +1,18 @@
 <?php
-namespace Avdb\DoctrineFilters\Resolver;
+namespace Avdb\DoctrineExtra\Resolver;
 
-use Avdb\DoctrineFilters\Exception\ResolverException;
-use Avdb\DoctrineFilters\Filter\DoctrineFilter;
+use Avdb\DoctrineExtra\Exception\ResolverException;
+use Avdb\DoctrineExtra\Filter\DoctrineFilter;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class FilterResolver
+ * Resolves filters to the QueryBuilder object
  *
- * @package Avdb\DoctrineFilters\Resolver
+ * @package Avdb\DoctrineExtra\Resolver
  */
-trait FilterResolver
+class Resolver
 {
     /**
      * Adds the filters to the QueryBuilder
@@ -20,9 +21,9 @@ trait FilterResolver
      * @param QueryBuilder $builder
      * @throws ResolverException
      */
-    public function resolve($filters = array(), QueryBuilder $builder)
+    public static function resolve($filters = array(), QueryBuilder $builder)
     {
-        $root = $this->resolveRoot($builder);
+        $root = self::resolveRoot($builder);
         $expr = $builder->expr()->andX();
 
         if ($filters instanceof DoctrineFilter) {
@@ -30,27 +31,25 @@ trait FilterResolver
         }
 
         if (!is_array($filters)) {
-           throw new ResolverException('Expected a DoctrineFilter or an array of DoctrineFilters');
+            throw new ResolverException('Expected a DoctrineFilter or an array of DoctrineFilters');
         }
 
         foreach ($filters as $filter) {
             $alias = $filter->getAlias() ?: $root;
 
-            if(!$filter instanceof DoctrineFilter) {
-                throw new ResolverException(
-                    sprintf('Could not resolve %s, can only handle DoctrineFilter instances', get_class($filter))
-                );
+            if (!$filter instanceof DoctrineFilter) {
+                throw new ResolverException(sprintf('Could not resolve %s, can only handle DoctrineFilter instances',
+                        get_class($filter)));
             }
 
             $expr->add($filter->createExpression($root));
 
-            if(false === $this->isPresent($alias, $builder)) {
+            if (false === self::isPresent($alias, $builder)) {
                 $filter->addAlias($builder, $root);
             }
         }
 
-
-        if(count($expr->getParts()) > 0) {
+        if (count($expr->getParts()) > 0) {
             $builder->andWhere($expr);
         }
     }
@@ -62,7 +61,7 @@ trait FilterResolver
      * @return string
      * @throws ResolverException
      */
-    private function resolveRoot(QueryBuilder $builder)
+    public static function resolveRoot(QueryBuilder $builder)
     {
         $select = $builder->getDQLPart('select');
 
@@ -80,7 +79,7 @@ trait FilterResolver
      * @param QueryBuilder $builder
      * @return bool
      */
-    private function isPresent($alias, QueryBuilder $builder)
+    public static function isPresent($alias, QueryBuilder $builder)
     {
         foreach ((array)$builder->getDQLPart('select') as $select) {
             if ((string)$select === $alias) {
@@ -88,14 +87,14 @@ trait FilterResolver
             }
         }
 
-        foreach((array)$builder->getDQLPart('join') as $joinedAlias => $expr) {
+        foreach ((array)$builder->getDQLPart('join') as $joinedAlias => $expr) {
             /**  @var Expr\Join[] $expr */
-            if($joinedAlias === $alias) {
+            if ($joinedAlias === $alias) {
                 return true;
             }
 
-            foreach((array)$expr as $join) {
-                if($join->getAlias() === $alias) {
+            foreach ((array)$expr as $join) {
+                if ($join->getAlias() === $alias) {
                     return true;
                 }
             }

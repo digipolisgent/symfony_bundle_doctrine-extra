@@ -1,6 +1,6 @@
 <?php
 
-namespace Avdb\DoctrineFilters\Filter;
+namespace Avdb\DoctrineExtra\Filter;
 
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
@@ -8,7 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 /**
  * Interface DoctrineFilter
  *
- * @package Avdb\DoctrineFilters\Filter
+ * @package Avdb\DoctrineExtra\Filter
  */
 interface DoctrineFilter
 {
@@ -35,7 +35,7 @@ interface DoctrineFilter
     /**
      * Returns the alias of the entity where the filter is applied on
      * When this function returns null, the root alias is assumed
-     * 
+     *
      * eg OrderStatusFilter :
      *
      * Filters for example on a customer element that has an order object that in turn has a status

@@ -1,7 +1,7 @@
 <?php
 
-namespace Avdb\DoctrineFilters\Exception;
+namespace Avdb\DoctrineExtra\Exception;
 
-class ResolverException extends DoctrineFilterException
+class ResolverException extends DoctrineExtraException
 {
 }

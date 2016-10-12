@@ -1,6 +1,6 @@
 <?php
 
-namespace Avdb\DoctrineFilters\Filter;
+namespace Avdb\DoctrineExtra\Filter;
 
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
@@ -37,7 +37,6 @@ abstract class AbstractFilter implements DoctrineFilter
      */
     public function addAlias(QueryBuilder $builder, $root)
     {
-        
     }
 
     /**

@@ -1,13 +1,14 @@
 <?php
-namespace Avdb\DoctrineFilters\Filter;
+namespace Avdb\DoctrineExtra\Filter;
 
+use Avdb\DoctrineExtra\Resolver\Resolver;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class AggregateFilter
  *
- * @package Avdb\DoctrineFilters\Filter
+ * @package Avdb\DoctrineExtra\Filter
  * @method DoctrineFilter[] getParameter()
  */
 class AggregateFilter extends AbstractFilter
@@ -33,12 +34,10 @@ class AggregateFilter extends AbstractFilter
         parent::__construct(null);
 
         if (!is_array($parameter)) {
-            throw new \InvalidArgumentException(
-                'Parameter should be an array of DoctrineFilters'
-            );
+            throw new \InvalidArgumentException('Parameter should be an array of DoctrineFilters');
         }
 
-        foreach($parameter as $filter) {
+        foreach ($parameter as $filter) {
             $this->addFilter($filter);
         }
 
@@ -52,11 +51,11 @@ class AggregateFilter extends AbstractFilter
     {
         if ($this->operator === self::OR_X) {
             $expr = $this->expr()->orX();
-        }else{
+        } else {
             $expr = $this->expr()->andX();
         }
 
-        foreach($this->getParameter() as $filter) {
+        foreach ($this->getParameter() as $filter) {
             $expr->add($filter->createExpression($root));
         }
 
@@ -68,9 +67,21 @@ class AggregateFilter extends AbstractFilter
      */
     public function addAlias(QueryBuilder $builder, $root)
     {
-        foreach($this->getParameter() as $filter) {
-            $filter->addAlias($builder, $root);
+        foreach ($this->getParameter() as $filter) {
+            if (Resolver::isPresent($filter->getAlias(), $builder)) {
+                $filter->addAlias($builder, $root);
+            }
         }
+    }
+
+    /**
+     * This will trigger the isPresent to return false so that addAlias will be called
+     *
+     * @return string
+     */
+    public function getAlias()
+    {
+        return 'aggregate';
     }
 
     /**
@@ -80,6 +91,7 @@ class AggregateFilter extends AbstractFilter
     public function addFilter(DoctrineFilter $filter)
     {
         $this->parameter[] = $filter;
+
         return $this;
     }
 }

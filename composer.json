@@ -1,6 +1,6 @@
 {
-    "name": "avdb/doctrine-filters",
-    "description": "Filter objects for Doctrine",
+    "name": "avdb/doctrine-extra",
+    "description": "Extra's for Doctrine",
     "keywords": ["Doctrine", "Filter", "ORM", "Query"],
     "type": "library",
     "license": "MIT",
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Avdb\\DoctrineFilters\\": "src"
+            "Avdb\\DoctrineExtra\\": "src"
         }
     },
     "extra": {
