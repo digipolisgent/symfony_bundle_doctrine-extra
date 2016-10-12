@@ -12,18 +12,19 @@ use Doctrine\ORM\QueryBuilder;
  *
  * @package Avdb\DoctrineExtra\Resolver
  */
-class Resolver
+trait Resolver
 {
     /**
      * Adds the filters to the QueryBuilder
      *
      * @param DoctrineFilter[]|DoctrineFilter $filters
      * @param QueryBuilder $builder
+     * @return QueryBuilder
      * @throws ResolverException
      */
-    public static function resolve($filters = array(), QueryBuilder $builder)
+    public function resolve($filters = array(), QueryBuilder $builder)
     {
-        $root = self::resolveRoot($builder);
+        $root = $this->resolveRoot($builder);
         $expr = $builder->expr()->andX();
 
         if ($filters instanceof DoctrineFilter) {
@@ -38,13 +39,14 @@ class Resolver
             $alias = $filter->getAlias() ?: $root;
 
             if (!$filter instanceof DoctrineFilter) {
-                throw new ResolverException(sprintf('Could not resolve %s, can only handle DoctrineFilter instances',
-                        get_class($filter)));
+                throw new ResolverException(
+                    sprintf('Could not resolve %s, can only handle DoctrineFilter instances', get_class($filter))
+                );
             }
 
             $expr->add($filter->createExpression($root));
 
-            if (false === self::isPresent($alias, $builder)) {
+            if (false === $this->isPresent($alias, $builder)) {
                 $filter->addAlias($builder, $root);
             }
         }
@@ -52,6 +54,8 @@ class Resolver
         if (count($expr->getParts()) > 0) {
             $builder->andWhere($expr);
         }
+
+        return $builder;
     }
 
     /**
@@ -61,7 +65,7 @@ class Resolver
      * @return string
      * @throws ResolverException
      */
-    public static function resolveRoot(QueryBuilder $builder)
+    protected function resolveRoot(QueryBuilder $builder)
     {
         $select = $builder->getDQLPart('select');
 
@@ -79,7 +83,7 @@ class Resolver
      * @param QueryBuilder $builder
      * @return bool
      */
-    public static function isPresent($alias, QueryBuilder $builder)
+    protected function isPresent($alias, QueryBuilder $builder)
     {
         foreach ((array)$builder->getDQLPart('select') as $select) {
             if ((string)$select === $alias) {

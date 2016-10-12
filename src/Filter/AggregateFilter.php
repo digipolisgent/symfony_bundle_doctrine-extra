@@ -11,8 +11,10 @@ use Doctrine\ORM\QueryBuilder;
  * @package Avdb\DoctrineExtra\Filter
  * @method DoctrineFilter[] getParameter()
  */
-class AggregateFilter extends AbstractFilter
+class AggregateFilter extends AbstractDoctrineFilter
 {
+    use Resolver;
+
     const OR_X  = 'OR_X';
     const AND_X = 'AND_X';
 
@@ -29,13 +31,9 @@ class AggregateFilter extends AbstractFilter
      * @param array|DoctrineFilter[] $parameter
      * @param string $operator
      */
-    public function __construct($parameter = [], $operator = self::OR_X)
+    public function __construct(array $parameter = [], $operator = self::OR_X)
     {
         parent::__construct(null);
-
-        if (!is_array($parameter)) {
-            throw new \InvalidArgumentException('Parameter should be an array of DoctrineFilters');
-        }
 
         foreach ($parameter as $filter) {
             $this->addFilter($filter);
@@ -68,7 +66,7 @@ class AggregateFilter extends AbstractFilter
     public function addAlias(QueryBuilder $builder, $root)
     {
         foreach ($this->getParameter() as $filter) {
-            if (Resolver::isPresent($filter->getAlias(), $builder)) {
+            if (false === $this->isPresent($filter->getAlias(), $builder)) {
                 $filter->addAlias($builder, $root);
             }
         }

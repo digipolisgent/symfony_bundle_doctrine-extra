@@ -4,7 +4,7 @@ namespace Avdb\DoctrineExtra\Filter;
 
 use Doctrine\ORM\Query\Expr;
 
-class PropertyFilter extends AbstractFilter
+class PropertyFilter extends AbstractDoctrineFilter
 {
     /**
      * Property where there's filtered
