@@ -1,12 +1,12 @@
 #Doctrine Extra's
 
 ## 1. Example's
-In this package an EntityRepository is included that uses the Assert en Resolvable trait. If we use this repository
+In this package a BaseManager is included that uses the Assert en Resolvable trait. If we use this Manager
 we can do the following code examples ;
 
 Select all new & processing orders paginated
 ```
-$paginatedOrders = $this->repository->paginate()->filter(
+$paginator = $manager->paginate()->filter(
     new AggregateFilter([new StatusFilter('new'),new StatusFilter('processing')]
 ));
 ```
@@ -14,7 +14,7 @@ $paginatedOrders = $this->repository->paginate()->filter(
 Select all 'new' & 'processing' orders as an iterator
 
 ```
-$iteratedOrders = $this->repository->iterate()->filter(
+$iterator = $manager->iterate()->filter(
     new AggregateFilter([new StatusFilter('new'),new StatusFilter('finished')]
 ));
 ```
@@ -22,7 +22,7 @@ $iteratedOrders = $this->repository->iterate()->filter(
 Count all 'new' & 'processing' orders
 
 ```
-$count = $this->repository->count()->filter(
+$count = $manager->count()->filter(
     new AggregateFilter([new StatusFilter('new'),new StatusFilter('finished')]
 ));
 ```
@@ -30,14 +30,14 @@ $count = $this->repository->count()->filter(
 Add an extra parameter to an existing query
 
 ```
-$builder = $this->repository->builder()->filter(
+$queryBuilder = $this->repository->builder()->filter(
     new AggregateFilter([new StatusFilter('new'),new StatusFilter('finished')]
 ));
 
-$builder->andWhere('category = :category');
-$builder->setParameter('category', 'books');
+$queryBuilder->andWhere('category = :category');
+$queryBuilder->setParameter('category', 'books');
 
-$orders = $builder->getResult();
+$orders = $queryBuilder->getResult();
 ```
 
 More example's are available below in the docs.
