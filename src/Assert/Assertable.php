@@ -34,26 +34,38 @@ trait Assertable
     {
         switch($this->assert) {
             case Result::ARRAY:
-                return $builder->getQuery()->getResult($hydration);
+                $result = $builder->getQuery()->getResult($hydration);
+                break;
             case Result::PAGINATE:
-                return new Paginator($builder);
+                $result =  new Paginator($builder);
+                break;
             case Result::SINGLE:
-                return $builder->getQuery()->getOneOrNullResult($hydration);
+                $result = $builder->getQuery()->getOneOrNullResult($hydration);
+                break;
             case Result::FIRST:
                 $result = $builder->setMaxResults(1)->getQuery()->getResult();
-                return count($result) > 0 ? $result[0] : null;
+                $result =  count($result) > 0 ? $result[0] : null;
+                break;
             case Result::ITERATE:
-                return $builder->getQuery()->iterate();
+                $result =  $builder->getQuery()->iterate();
+                break;
             case Result::COUNT:
-                $paginator = new Paginator($builder);
-                return $paginator->count();
+                $result = new Paginator($builder);
+                $result = $result->count();
+                break;
             case Result::QUERY:
-                return $builder->getQuery();
+                $result = $builder->getQuery();
+                break;
             case Result::BUILDER:
-                return $builder;
+                $result = $builder;
+                break;
             default:
                 throw new AssertResultException(sprintf('Unknown result assertion "%s"', $this->assert));
         }
+
+        $this->assert = Result::ARRAY;
+        return $result;
+
     }
 
     /**
