@@ -3,6 +3,7 @@ namespace Avdb\DoctrineExtra\Manager;
 
 use Avdb\DoctrineExtra\Exception\EntityNotFoundException;
 use Avdb\DoctrineExtra\Exception\EntityNotSupportedException;
+use Avdb\DoctrineExtra\Filter\DoctrineFilter;
 
 /**
  * Class EntityManager
@@ -19,6 +20,12 @@ interface Manager
      * @throws EntityNotFoundException
      */
     public function get($id);
+
+    /**
+     * @param DoctrineFilter[]|array $filters
+     * @return mixed
+     */
+    public function filter($filters = []);
 
     /**
      * @param $object

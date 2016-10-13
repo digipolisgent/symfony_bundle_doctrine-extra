@@ -10,5 +10,15 @@ namespace Avdb\DoctrineExtra\Tests;
  */
 class DoctrineExtraTestCase extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @param string $class
+     * @return mixed|\PHPUnit_Framework_MockObject_MockObject
+     */
+    public function getMockObject($class)
+    {
+        $mocker = $this->getMockBuilder($class);
+        $mocker->disableOriginalConstructor();
 
+        return $mocker->getMock();
+    }
 }

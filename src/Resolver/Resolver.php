@@ -22,7 +22,7 @@ trait Resolver
      * @return QueryBuilder
      * @throws ResolverException
      */
-    public function resolve($filters = array(), QueryBuilder $builder)
+    public function resolve($filters = [], QueryBuilder $builder)
     {
         $root = $this->resolveRoot($builder);
         $expr = $builder->expr()->andX();

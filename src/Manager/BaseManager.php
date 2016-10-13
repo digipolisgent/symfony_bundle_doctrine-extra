@@ -2,27 +2,47 @@
 
 namespace Avdb\DoctrineExtra\Manager;
 
+use Avdb\DoctrineExtra\Assert\Assertable;
 use Avdb\DoctrineExtra\Exception\EntityNotFoundException;
 use Avdb\DoctrineExtra\Exception\EntityNotSupportedException;
+use Avdb\DoctrineExtra\Filter\DoctrineFilter;
+use Avdb\DoctrineExtra\Resolver\Resolver;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\Internal\Hydration\IterableResult;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * Class EntityManager
  *
  * @package Avdb\DoctrineExtra\Manager
  */
-abstract class AbstractManager implements Manager
+abstract class BaseManager implements Manager
 {
-    /**
-     * @var ObjectManager
-     */
-    protected $manager;
+    /** Assert Results */
+    use Assertable;
+
+    /** Resolve Filters */
+    use Resolver;
 
     /**
      * @var EntityRepository
      */
     protected $repository;
+
+    /**
+     * @var ObjectManager
+     */
+    private $manager;
+
+    /**
+     * Add default filters for each query
+     *
+     * @var array
+     */
+    private $filters = [];
 
     /**
      * @var string
@@ -39,6 +59,29 @@ abstract class AbstractManager implements Manager
         $this->manager = $manager;
         $this->repository = $manager->getRepository($this->getClass());
         $this->class = $this->getClass();
+    }
+
+    /**
+     * Entity class the Manager is supporting
+     *
+     * @return string
+     */
+    public abstract function getClass();
+
+    /**
+     * Filters for a set of results, asserts the result
+     *
+     * @param DoctrineFilter[]|array|DoctrineFilter $filters
+     * @return array|IterableResult|Query|QueryBuilder|Paginator|int|mixed
+     */
+    public function filter($filters = [])
+    {
+        $builder = $this->repository->createQueryBuilder('root');
+        $filters = array_merge($this->filters, $filters);
+
+        return $this->assertResult(
+            $this->resolve($filters, $builder)
+        );
     }
 
     /**
@@ -102,9 +145,22 @@ abstract class AbstractManager implements Manager
     }
 
     /**
-     * Entity class the Manager is supporting
+     * Adds a default filter
      *
-     * @return string
+     * @param DoctrineFilter $filter
      */
-    public abstract function getClass();
+    public function addFilter(DoctrineFilter $filter)
+    {
+        $this->filters[] = $filter;
+    }
+
+    /**
+     * Get the default filters
+     *
+     * @return array
+     */
+    public function getFilters()
+    {
+        return $this->filters;
+    }
 }
