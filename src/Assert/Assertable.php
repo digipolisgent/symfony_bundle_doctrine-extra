@@ -19,7 +19,7 @@ trait Assertable
      *
      * @var string
      */
-    protected $assert = Result::ARRAY;
+    protected $assert = Result::ARRAY_DEFAULT;
 
     /**
      * Returns the asserted result for a QueryBuilder
@@ -33,7 +33,7 @@ trait Assertable
     protected function assertResult(QueryBuilder $builder, $hydration = Query::HYDRATE_OBJECT)
     {
         switch($this->assert) {
-            case Result::ARRAY:
+            case Result::ARRAY_DEFAULT:
                 $result = $builder->getQuery()->getResult($hydration);
                 break;
             case Result::PAGINATE:
@@ -63,7 +63,7 @@ trait Assertable
                 throw new AssertResultException(sprintf('Unknown result assertion "%s"', $this->assert));
         }
 
-        $this->assert = Result::ARRAY;
+        $this->assert = Result::ARRAY_DEFAULT;
         return $result;
 
     }
