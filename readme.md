@@ -1,3 +1,5 @@
+[![Build status](https://travis-ci.org/avandenbogaert/doctrine-extra.svg?branch=master)](https://travis-ci.org/avandenbogaert/doctrine-extra.svg?branch=master)
+[![Packagist](https://img.shields.io/packagist/v/avdb/doctrine-extra.svg)](https://packagist.org/packages/avdb/doctrine-extra)
 #Doctrine Extra's
 
 ## 1. Example's

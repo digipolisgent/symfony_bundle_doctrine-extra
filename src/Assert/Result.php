@@ -11,12 +11,12 @@ namespace Avdb\DoctrineExtra\Assert;
  */
 interface Result
 {
-    const ARRAY      = 'array';
-    const PAGINATE   = 'paginated';
-    const SINGLE     = 'single';
-    const FIRST      = 'first';
-    const ITERATE    = 'iterate';
-    const COUNT      = 'count';
-    const QUERY      = 'query';
-    const BUILDER    = 'builder';
+    const ARRAY_DEFAULT = 'array';
+    const PAGINATE      = 'paginated';
+    const SINGLE        = 'single';
+    const FIRST         = 'first';
+    const ITERATE       = 'iterate';
+    const COUNT         = 'count';
+    const QUERY         = 'query';
+    const BUILDER       = 'builder';
 }
