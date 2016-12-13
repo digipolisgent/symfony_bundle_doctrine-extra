@@ -76,6 +76,10 @@ abstract class BaseManager implements Manager
      */
     public function filter($filters = [])
     {
+        if ($filters instanceof DoctrineFilter) {
+            $filters = [$filters];
+        }
+
         $builder = $this->repository->createQueryBuilder('root');
         $filters = array_merge($this->filters, $filters);
 
