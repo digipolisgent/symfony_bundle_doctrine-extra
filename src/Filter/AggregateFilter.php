@@ -34,6 +34,7 @@ class AggregateFilter extends AbstractFilter
     public function __construct(array $parameter = [], $operator = self::OR_X)
     {
         parent::__construct(null);
+        $this->parameter = [];
 
         foreach ($parameter as $filter) {
             $this->addFilter($filter);
