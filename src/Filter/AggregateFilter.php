@@ -93,4 +93,12 @@ class AggregateFilter extends AbstractFilter
 
         return $this;
     }
+
+    /**
+     * @return integer
+     */
+    public function count()
+    {
+        return (int)count($this->parameter);
+    }
 }
