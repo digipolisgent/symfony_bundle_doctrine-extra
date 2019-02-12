@@ -1,6 +1,6 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Exception;
+namespace DigipolisGent\DoctrineExtra\Exception;
 
 class AssertResultException extends DoctrineExtraException
 {

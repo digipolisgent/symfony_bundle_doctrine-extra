@@ -1,12 +1,12 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests;
+namespace DigipolisGent\DoctrineExtra\Tests;
 
 /**
  * Class DoctrineExtraTestCase
  * Base test case for all tests in this bundle
  *
- * @package Avdb\DoctrineExtra\Tests
+ * @package DigipolisGent\DoctrineExtra\Tests
  */
 class DoctrineExtraTestCase extends \PHPUnit_Framework_TestCase
 {

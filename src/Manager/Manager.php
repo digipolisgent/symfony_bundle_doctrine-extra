@@ -1,14 +1,14 @@
 <?php
-namespace Avdb\DoctrineExtra\Manager;
+namespace DigipolisGent\DoctrineExtra\Manager;
 
-use Avdb\DoctrineExtra\Exception\EntityNotFoundException;
-use Avdb\DoctrineExtra\Exception\EntityNotSupportedException;
-use Avdb\DoctrineExtra\Filter\DoctrineFilter;
+use DigipolisGent\DoctrineExtra\Exception\EntityNotFoundException;
+use DigipolisGent\DoctrineExtra\Exception\EntityNotSupportedException;
+use DigipolisGent\DoctrineExtra\Filter\DoctrineFilter;
 
 /**
  * Class EntityManager
  *
- * @package Avdb\DoctrineExtra\Manager
+ * @package DigipolisGent\DoctrineExtra\Manager
  */
 interface Manager
 {

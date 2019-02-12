@@ -1,6 +1,6 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Filter;
+namespace DigipolisGent\DoctrineExtra\Filter;
 
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
@@ -8,7 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 /**
  * Interface DoctrineFilter
  *
- * @package Avdb\DoctrineExtra\Filter
+ * @package DigipolisGent\DoctrineExtra\Filter
  */
 interface DoctrineFilter
 {

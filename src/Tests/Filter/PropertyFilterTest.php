@@ -1,10 +1,10 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests\Filter;
+namespace DigipolisGent\DoctrineExtra\Tests\Filter;
 
-use Avdb\DoctrineExtra\Filter\DoctrineFilter;
-use Avdb\DoctrineExtra\Filter\PropertyFilter;
-use Avdb\DoctrineExtra\Tests\DoctrineExtraTestCase;
+use DigipolisGent\DoctrineExtra\Filter\DoctrineFilter;
+use DigipolisGent\DoctrineExtra\Filter\PropertyFilter;
+use DigipolisGent\DoctrineExtra\Tests\DoctrineExtraTestCase;
 use Doctrine\ORM\Query\Expr\Comparison;
 
 class PropertyFilterTest extends DoctrineExtraTestCase

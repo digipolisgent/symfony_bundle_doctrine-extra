@@ -1,11 +1,11 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests\Filter;
+namespace DigipolisGent\DoctrineExtra\Tests\Filter;
 
-use Avdb\DoctrineExtra\Filter\AggregateFilter;
-use Avdb\DoctrineExtra\Filter\DoctrineFilter;
-use Avdb\DoctrineExtra\Filter\PropertyFilter;
-use Avdb\DoctrineExtra\Tests\DoctrineExtraTestCase;
+use DigipolisGent\DoctrineExtra\Filter\AggregateFilter;
+use DigipolisGent\DoctrineExtra\Filter\DoctrineFilter;
+use DigipolisGent\DoctrineExtra\Filter\PropertyFilter;
+use DigipolisGent\DoctrineExtra\Tests\DoctrineExtraTestCase;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Andx;
 use Doctrine\ORM\Query\Expr\Orx;

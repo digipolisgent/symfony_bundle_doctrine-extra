@@ -1,9 +1,9 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests\Manager;
+namespace DigipolisGent\DoctrineExtra\Tests\Manager;
 
-use Avdb\DoctrineExtra\Manager\Manager;
-use Avdb\DoctrineExtra\Tests\DoctrineExtraTestCase;
+use DigipolisGent\DoctrineExtra\Manager\Manager;
+use DigipolisGent\DoctrineExtra\Tests\DoctrineExtraTestCase;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 

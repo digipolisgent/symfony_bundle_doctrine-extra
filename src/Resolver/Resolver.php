@@ -1,8 +1,8 @@
 <?php
-namespace Avdb\DoctrineExtra\Resolver;
+namespace DigipolisGent\DoctrineExtra\Resolver;
 
-use Avdb\DoctrineExtra\Exception\ResolverException;
-use Avdb\DoctrineExtra\Filter\DoctrineFilter;
+use DigipolisGent\DoctrineExtra\Exception\ResolverException;
+use DigipolisGent\DoctrineExtra\Filter\DoctrineFilter;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
 
@@ -10,7 +10,7 @@ use Doctrine\ORM\QueryBuilder;
  * Class FilterResolver
  * Resolves filters to the QueryBuilder object
  *
- * @package Avdb\DoctrineExtra\Resolver
+ * @package DigipolisGent\DoctrineExtra\Resolver
  */
 trait Resolver
 {

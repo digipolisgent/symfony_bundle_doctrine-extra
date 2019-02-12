@@ -1,10 +1,10 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests\Exception;
+namespace DigipolisGent\DoctrineExtra\Tests\Exception;
 
-use Avdb\DoctrineExtra\Exception\EntityNotFoundException;
+use DigipolisGent\DoctrineExtra\Exception\EntityNotFoundException;
 use Doctrine\ORM\EntityNotFoundException as DoctrineEntityNotFoundException;
-use Avdb\DoctrineExtra\Tests\DoctrineExtraTestCase;
+use DigipolisGent\DoctrineExtra\Tests\DoctrineExtraTestCase;
 
 class EntityNotFoundExceptionTest extends DoctrineExtraTestCase
 {
