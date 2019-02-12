@@ -1,14 +1,14 @@
 <?php
-namespace Avdb\DoctrineExtra\Filter;
+namespace DigipolisGent\DoctrineExtra\Filter;
 
-use Avdb\DoctrineExtra\Resolver\Resolver;
+use DigipolisGent\DoctrineExtra\Resolver\Resolver;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class AggregateFilter
  *
- * @package Avdb\DoctrineExtra\Filter
+ * @package DigipolisGent\DoctrineExtra\Filter
  * @method DoctrineFilter[] getParameter()
  */
 class AggregateFilter extends AbstractFilter

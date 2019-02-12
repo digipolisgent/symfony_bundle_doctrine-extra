@@ -1,8 +1,8 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests\Filter;
+namespace DigipolisGent\DoctrineExtra\Tests\Filter;
 
-use Avdb\DoctrineExtra\Filter\AbstractFilter;
+use DigipolisGent\DoctrineExtra\Filter\AbstractFilter;
 use Doctrine\ORM\Query\Expr;
 
 class AbstractFilterImplementation extends AbstractFilter

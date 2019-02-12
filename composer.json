@@ -1,5 +1,5 @@
 {
-    "name": "avdb/doctrine-extra",
+    "name": "digipolisgent/doctrine-extra",
     "description": "Extra's for Doctrine",
     "keywords": ["Doctrine", "Filter", "ORM", "Query"],
     "type": "library",
@@ -8,6 +8,10 @@
         {
             "name": "Arne Van den Bogaert",
             "email": "arne.vandenbogaert@district01.be"
+        },
+        {
+            "name": "Jelle Sebreghts",
+            "email": "sebreghts.jelle@gmail.com"
         }
     ],
     "require": {
@@ -19,12 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Avdb\\DoctrineExtra\\": "src"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
+            "DigipolisGent\\DoctrineExtra\\": "src"
         }
     }
 }

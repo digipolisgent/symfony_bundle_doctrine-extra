@@ -1,6 +1,6 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Exception;
+namespace DigipolisGent\DoctrineExtra\Exception;
 
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolationListInterface;

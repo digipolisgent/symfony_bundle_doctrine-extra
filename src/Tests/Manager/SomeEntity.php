@@ -1,6 +1,6 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests\Manager;
+namespace DigipolisGent\DoctrineExtra\Tests\Manager;
 
 class SomeEntity
 {

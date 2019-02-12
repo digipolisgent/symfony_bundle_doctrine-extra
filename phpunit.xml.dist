@@ -5,7 +5,7 @@
          bootstrap="vendor/autoload.php"
          colors="true">
     <testsuites>
-        <testsuite name="AvdbDoctrineExtra Test Suite">
+        <testsuite name="DigipolisGentDoctrineExtra Test Suite">
             <directory>src/Tests</directory>
         </testsuite>
     </testsuites>

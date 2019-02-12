@@ -1,10 +1,10 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Tests\Exception;
+namespace DigipolisGent\DoctrineExtra\Tests\Exception;
 
-use Avdb\DoctrineExtra\Exception\DoctrineExtraException;
-use Avdb\DoctrineExtra\Exception\ResolverException;
-use Avdb\DoctrineExtra\Tests\DoctrineExtraTestCase;
+use DigipolisGent\DoctrineExtra\Exception\DoctrineExtraException;
+use DigipolisGent\DoctrineExtra\Exception\ResolverException;
+use DigipolisGent\DoctrineExtra\Tests\DoctrineExtraTestCase;
 
 class ResolverExceptionTest extends DoctrineExtraTestCase
 {

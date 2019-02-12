@@ -1,8 +1,8 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Assert;
+namespace DigipolisGent\DoctrineExtra\Assert;
 
-use Avdb\DoctrineExtra\Exception\AssertResultException;
+use DigipolisGent\DoctrineExtra\Exception\AssertResultException;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -10,7 +10,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * Class Assertable
  *
- * @package Avdb\DoctrineExtra\Assert
+ * @package DigipolisGent\DoctrineExtra\Assert
  */
 trait Assertable
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Assert;
+namespace DigipolisGent\DoctrineExtra\Assert;
 
 /**
  * Interface Result
  *
  * Different kinds of result forms
  *
- * @package Avdb\DoctrineExtra\Assert
+ * @package DigipolisGent\DoctrineExtra\Assert
  */
 interface Result
 {

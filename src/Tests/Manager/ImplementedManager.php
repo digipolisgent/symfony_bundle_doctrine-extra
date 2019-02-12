@@ -1,7 +1,7 @@
 <?php
-namespace Avdb\DoctrineExtra\Tests\Manager;
+namespace DigipolisGent\DoctrineExtra\Tests\Manager;
 
-use Avdb\DoctrineExtra\Manager\BaseManager;
+use DigipolisGent\DoctrineExtra\Manager\BaseManager;
 
 class ImplementedManager extends BaseManager
 {

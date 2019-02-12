@@ -1,13 +1,13 @@
 <?php
 
-namespace Avdb\DoctrineExtra\Manager;
+namespace DigipolisGent\DoctrineExtra\Manager;
 
-use Avdb\DoctrineExtra\Assert\Assertable;
-use Avdb\DoctrineExtra\Exception\EntityNotFoundException;
-use Avdb\DoctrineExtra\Exception\EntityNotSupportedException;
-use Avdb\DoctrineExtra\Exception\ValidationException;
-use Avdb\DoctrineExtra\Filter\DoctrineFilter;
-use Avdb\DoctrineExtra\Resolver\Resolver;
+use DigipolisGent\DoctrineExtra\Assert\Assertable;
+use DigipolisGent\DoctrineExtra\Exception\EntityNotFoundException;
+use DigipolisGent\DoctrineExtra\Exception\EntityNotSupportedException;
+use DigipolisGent\DoctrineExtra\Exception\ValidationException;
+use DigipolisGent\DoctrineExtra\Filter\DoctrineFilter;
+use DigipolisGent\DoctrineExtra\Resolver\Resolver;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Internal\Hydration\IterableResult;
@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Class EntityManager
  *
- * @package Avdb\DoctrineExtra\Manager
+ * @package DigipolisGent\DoctrineExtra\Manager
  */
 abstract class BaseManager implements Manager
 {
@@ -85,8 +85,8 @@ abstract class BaseManager implements Manager
      * @param DoctrineFilter[]|array|DoctrineFilter $filters
      * @param array $orderBy
      * @return array|IterableResult|Query|QueryBuilder|Paginator|int|mixed
-     * @throws \Avdb\DoctrineExtra\Exception\AssertResultException
-     * @throws \Avdb\DoctrineExtra\Exception\ResolverException
+     * @throws \DigipolisGent\DoctrineExtra\Exception\AssertResultException
+     * @throws \DigipolisGent\DoctrineExtra\Exception\ResolverException
      */
     public function filter($filters = [], $orderBy = [])
     {
